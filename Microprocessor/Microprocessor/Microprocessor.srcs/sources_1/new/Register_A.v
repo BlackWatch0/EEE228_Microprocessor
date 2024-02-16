@@ -26,17 +26,14 @@ module Register_A(
     input wire A2,
     input wire A3,
     input wire loadA,
-    input wire clk,
     output reg [3:0] regA
 );
 
-always @(posedge clk) begin
-    if (loadA) begin
-        regA[0] <= A0;
-        regA[1] <= A1;
-        regA[2] <= A2;
-        regA[3] <= A3;
-    end
+always @(posedge loadA) begin
+    regA[0] <= A0;
+    regA[1] <= A1;
+    regA[2] <= A2;
+    regA[3] <= A3;
 end
 
 endmodule

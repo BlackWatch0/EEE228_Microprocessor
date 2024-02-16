@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Feb 16 16:57:36 2024" VIVADOVERSION="2019.2">
+
+  <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="design_1" PACKAGE="csg324" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="O" LEFT="3" NAME="ALU_Sel_0" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Decoder_0_ALU_Sel">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="ALU_Sel"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="3" NAME="instruction_0" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_instruction_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="instruction"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A0_0" SIGIS="undef" SIGNAME="External_Ports_A0_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A1_0" SIGIS="undef" SIGNAME="External_Ports_A1_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A2_0" SIGIS="undef" SIGNAME="External_Ports_A2_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A2"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A3_0" SIGIS="undef" SIGNAME="External_Ports_A3_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A3"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="3" NAME="regA_0" RIGHT="0" SIGIS="undef" SIGNAME="Register_A_0_regA">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="regA"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="3" NAME="regB_0" RIGHT="0" SIGIS="undef" SIGNAME="Register_B_0_regB">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="regB"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B0_0" SIGIS="undef" SIGNAME="External_Ports_B0_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B1_0" SIGIS="undef" SIGNAME="External_Ports_B1_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B2_0" SIGIS="undef" SIGNAME="External_Ports_B2_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B2"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B3_0" SIGIS="undef" SIGNAME="External_Ports_B3_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B3"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/Instruction_Decoder_0" HWVERSION="1.0" INSTANCE="Instruction_Decoder_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Instruction_Decoder" VLNV="xilinx.com:module_ref:Instruction_Decoder:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_Instruction_Decoder_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="3" NAME="instruction" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_instruction_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="instruction_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="loadA" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Register_A_0" PORT="loadA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="loadB" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Register_B_0" PORT="loadB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="ALU_Sel" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Decoder_0_ALU_Sel">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ALU_Sel_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Register_A_0" HWVERSION="1.0" INSTANCE="Register_A_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Register_A" VLNV="xilinx.com:module_ref:Register_A:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_Register_A_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="A0" SIGIS="undef" SIGNAME="External_Ports_A0_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A0_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="A1" SIGIS="undef" SIGNAME="External_Ports_A1_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A1_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="A2" SIGIS="undef" SIGNAME="External_Ports_A2_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A2_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="A3" SIGIS="undef" SIGNAME="External_Ports_A3_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A3_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="loadA" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="regA" RIGHT="0" SIGIS="undef" SIGNAME="Register_A_0_regA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="regA_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Register_B_0" HWVERSION="1.0" INSTANCE="Register_B_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Register_B" VLNV="xilinx.com:module_ref:Register_B:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_Register_B_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="B0" SIGIS="undef" SIGNAME="External_Ports_B0_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B0_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="B1" SIGIS="undef" SIGNAME="External_Ports_B1_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B1_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="B2" SIGIS="undef" SIGNAME="External_Ports_B2_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B2_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="B3" SIGIS="undef" SIGNAME="External_Ports_B3_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B3_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="loadB" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="regB" RIGHT="0" SIGIS="undef" SIGNAME="Register_B_0_regB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="regB_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

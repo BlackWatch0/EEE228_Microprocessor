@@ -26,17 +26,14 @@ module Register_B(
     input wire B2,
     input wire B3,
     input wire loadB,
-    input wire clk,
     output reg [3:0] regB
 );
 
-always @(posedge clk) begin
-    if (loadB) begin
-        regB[0] <= B0;
-        regB[1] <= B1;
-        regB[2] <= B2;
-        regB[3] <= B3;
-    end
+always @(posedge loadB) begin
+    regB[0] <= B0;
+    regB[1] <= B1;
+    regB[2] <= B2;
+    regB[3] <= B3;
 end
 
 endmodule
