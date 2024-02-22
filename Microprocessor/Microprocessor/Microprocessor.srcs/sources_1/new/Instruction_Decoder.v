@@ -4,9 +4,8 @@ module Instruction_Decoder(
     output reg loadA,
     // LD_B output
     output reg loadB,
-    
-    // ALU output
-    output [3:0] ALU_Sel
+    // update program counter
+    output reg update
 );
 
 // Define operations
@@ -31,15 +30,18 @@ localparam CLR_ACC      = 4'b1111;
 
 
 always @(*) begin
-    //loadA init
+    // loadA init
     loadA = 0;
-    //loadB init
+    // loadB init
     loadB = 0;
+    update = 0;
     case(instruction)
         LD_A: begin loadA = 1;end
         LD_B: begin loadB = 1;end
+        
         default:begin end
     endcase
+    update = 1;
 end
 
 // Zero flag
