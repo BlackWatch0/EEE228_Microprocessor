@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 09.02.2024 15:36:01
+// Create Date: 23.02.2024 15:10:22
 // Design Name: 
-// Module Name: Shifter_flag
+// Module Name: Accumulator
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Shifter_flag(
+module Accumulator(
+    input clk,
+    input reset,
+    input [7:0] alu_result,
+    input update,
+    output reg [7:0] acc
+);
 
-    );
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        acc <= 8'b0;
+    end
+    else if (update) begin
+        acc <= alu_result;
+    end
+end
+
 endmodule
+

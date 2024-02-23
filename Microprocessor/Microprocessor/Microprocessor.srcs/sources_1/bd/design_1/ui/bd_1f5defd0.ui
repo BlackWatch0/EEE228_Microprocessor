@@ -17,25 +17,25 @@ preplace portBus ALU_Sel_0 -pg 1 -lvl 3 -x 620 -y 330 -defaultsOSRD
 preplace portBus instruction_0 -pg 1 -lvl 0 -x -230 -y 300 -defaultsOSRD
 preplace portBus regA_0 -pg 1 -lvl 3 -x 620 -y 10 -defaultsOSRD
 preplace portBus regB_0 -pg 1 -lvl 3 -x 620 -y 170 -defaultsOSRD
-preplace inst Instruction_Decoder_0 -pg 1 -lvl 1 -x -40 -y 300 -defaultsOSRD
 preplace inst Register_A_0 -pg 1 -lvl 2 -x 280 -y 10 -defaultsOSRD
 preplace inst Register_B_0 -pg 1 -lvl 2 -x 280 -y 190 -defaultsOSRD
-preplace netloc Instruction_Decoder_0_loadA 1 1 1 100 50n
-preplace netloc Instruction_Decoder_0_loadB 1 1 1 110 230n
-preplace netloc Instruction_Decoder_0_ALU_Sel 1 1 2 100J 330 NJ
-preplace netloc instruction_0_1 1 0 1 N 300
+preplace inst Instruction_Decoder_0 -pg 1 -lvl 1 -x -40 -y 300 -defaultsOSRD
+preplace netloc Instruction_Decoder_0_loadA 1 1 1 110 50n
+preplace netloc Instruction_Decoder_0_loadB 1 1 1 120 220n
+preplace netloc Instruction_Decoder_0_ALU_Sel 1 1 2 120J 330 NJ
+preplace netloc instruction_0_1 1 0 1 -190 290n
 preplace netloc A0_0_1 1 0 2 NJ -30 NJ
 preplace netloc A1_0_1 1 0 2 NJ -10 NJ
 preplace netloc A2_0_1 1 0 2 NJ 10 NJ
 preplace netloc A3_0_1 1 0 2 NJ 30 NJ
 preplace netloc Register_A_0_regA 1 2 1 N 10
 preplace netloc Register_B_0_regB 1 2 1 390 170n
-preplace netloc B0_0_1 1 0 2 NJ 150 NJ
-preplace netloc B1_0_1 1 0 2 NJ 170 NJ
-preplace netloc B2_0_1 1 0 2 NJ 190 NJ
-preplace netloc B3_0_1 1 0 2 NJ 210 NJ
+preplace netloc B0_0_1 1 0 2 -210J 110 140J
+preplace netloc B1_0_1 1 0 2 -190J 140 120J
+preplace netloc B2_0_1 1 0 2 -200J 120 130J
+preplace netloc B3_0_1 1 0 2 -180J 130 100J
 levelinfo -pg 1 -230 -40 280 620
-pagesize -pg 1 -db -bbox -sgen -390 -110 770 390
+pagesize -pg 1 -db -bbox -sgen -390 -110 770 460
 "
 }
-
+0

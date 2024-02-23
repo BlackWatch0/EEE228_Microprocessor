@@ -5,13 +5,12 @@
       "device": "xc7a100tcsg324-1",
       "name": "design_1",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2019.2",
-      "validated": "true"
+      "tool_version": "2019.2"
     },
     "design_tree": {
-      "Instruction_Decoder_0": "",
       "Register_A_0": "",
-      "Register_B_0": ""
+      "Register_B_0": "",
+      "Instruction_Decoder_0": ""
     },
     "ports": {
       "ALU_Sel_0": {
@@ -60,33 +59,6 @@
       }
     },
     "components": {
-      "Instruction_Decoder_0": {
-        "vlnv": "xilinx.com:module_ref:Instruction_Decoder:1.0",
-        "xci_name": "design_1_Instruction_Decoder_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "Instruction_Decoder",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "instruction": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "loadA": {
-            "direction": "O"
-          },
-          "loadB": {
-            "direction": "O"
-          },
-          "ALU_Sel": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          }
-        }
-      },
       "Register_A_0": {
         "vlnv": "xilinx.com:module_ref:Register_A:1.0",
         "xci_name": "design_1_Register_A_0_0",
@@ -146,6 +118,61 @@
             "direction": "O",
             "left": "3",
             "right": "0"
+          }
+        }
+      },
+      "Instruction_Decoder_0": {
+        "vlnv": "xilinx.com:module_ref:Instruction_Decoder:1.0",
+        "xci_name": "design_1_Instruction_Decoder_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Instruction_Decoder",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "instruction": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "shifter_flag": {
+            "direction": "I"
+          },
+          "loadA": {
+            "direction": "O"
+          },
+          "loadB": {
+            "direction": "O"
+          },
+          "loadO": {
+            "direction": "O"
+          },
+          "MUX_0": {
+            "direction": "O"
+          },
+          "MUX_1": {
+            "direction": "O"
+          },
+          "shift_direction": {
+            "direction": "O"
+          },
+          "shifter_en": {
+            "direction": "O"
+          },
+          "load_shifter": {
+            "direction": "O"
+          },
+          "ALU_Sel": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "update_PC": {
+            "direction": "O"
+          },
+          "acc_reset": {
+            "type": "rst",
+            "direction": "O"
           }
         }
       }
