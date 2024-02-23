@@ -1,10 +1,10 @@
 module ALU(
-    input [3:0] regA, // 4-bit input operand A
-    input [3:0] regB, // 4-bit input operand B
+    input [7:0] regA, // 4-bit input operand A
+    input [7:0] regB, // 4-bit input operand B
     input [3:0] ALU_Sel, // Operation selector
-    output reg [3:0] regO, // 4-bit result
-    output Zero // Flag that is true when the result is 0
+    output reg [7:0] regO // 4-bit result
 );
+
 
 // Define operations
 localparam ADD  = 4'b1001;
@@ -23,11 +23,8 @@ always @(ALU_Sel) begin
         OR:  regO = regA | regB;
         XOR: regO = regA ^ regB;
         INV: regO = ~regA;
-//        default: O = 4'b0000; // Default case
     endcase
 end
 
-// Zero flag
-assign Zero = (O == 4'b0000) ? 1'b1 : 1'b0;
 
 endmodule
