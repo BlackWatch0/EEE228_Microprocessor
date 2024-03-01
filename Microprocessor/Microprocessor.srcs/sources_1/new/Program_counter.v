@@ -1,0 +1,41 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 22.02.2024 15:36:32
+// Design Name: 
+// Module Name: Program_counter
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module Program_counter(
+    input clk,
+    input start,
+    input update,
+    output reg [4:0] currentPC = 5'b11111
+);
+
+always @(posedge clk or posedge start or posedge update) begin
+    if (start) begin
+        currentPC <= 5'b0;
+    end
+    else if (update) begin
+        currentPC <= currentPC + 5'b0001;
+    end
+end
+
+endmodule
+
+

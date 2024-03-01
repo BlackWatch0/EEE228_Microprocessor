@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Mar  1 14:18:34 2024" VIVADOVERSION="2019.2">
+
+  <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="final_design" PACKAGE="csg324" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_0" SIGIS="clk" SIGNAME="External_Ports_clk_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Instruction_Register_0" PORT="clk"/>
+        <CONNECTION INSTANCE="Accumulator_0" PORT="clk"/>
+        <CONNECTION INSTANCE="Shifter_0" PORT="clk"/>
+        <CONNECTION INSTANCE="Program_counter_0" PORT="clk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A0_0" SIGIS="undef" SIGNAME="External_Ports_A0_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A1_0" SIGIS="undef" SIGNAME="External_Ports_A1_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A2_0" SIGIS="undef" SIGNAME="External_Ports_A2_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A2"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="A3_0" SIGIS="undef" SIGNAME="External_Ports_A3_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_A_0" PORT="A3"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B0_0" SIGIS="undef" SIGNAME="External_Ports_B0_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B0"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B1_0" SIGIS="undef" SIGNAME="External_Ports_B1_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B2_0" SIGIS="undef" SIGNAME="External_Ports_B2_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B2"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="B3_0" SIGIS="undef" SIGNAME="External_Ports_B3_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_B_0" PORT="B3"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="7" NAME="regO_0" RIGHT="0" SIGIS="undef" SIGNAME="Register_O_0_regO">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Register_O_0" PORT="regO"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="start_0" SIGIS="undef" SIGNAME="External_Ports_start_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Program_counter_0" PORT="start"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="4" NAME="currentPC_0" RIGHT="0" SIGIS="undef" SIGNAME="Program_counter_0_currentPC">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="Program_counter_0" PORT="currentPC"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/ALU_0" HWVERSION="1.0" INSTANCE="ALU_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ALU" VLNV="xilinx.com:module_ref:ALU:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_ALU_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="regA" RIGHT="0" SIGIS="undef" SIGNAME="Accumulator_0_acc">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Accumulator_0" PORT="acc"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="regB" RIGHT="0" SIGIS="undef" SIGNAME="MUX_1_MUX_Reg">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_1" PORT="MUX_Reg"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="ALU_Sel" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Decoder_0_ALU_Sel">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="ALU_Sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="acc_update" SIGIS="undef" SIGNAME="ALU_0_acc_update">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Accumulator_0" PORT="update"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="regO" RIGHT="0" SIGIS="undef" SIGNAME="ALU_0_regO">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Accumulator_0" PORT="alu_result"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Accumulator_0" HWVERSION="1.0" INSTANCE="Accumulator_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Accumulator" VLNV="xilinx.com:module_ref:Accumulator:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Accumulator_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="Instruction_Decoder_0_acc_reset">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="acc_reset"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="alu_result" RIGHT="0" SIGIS="undef" SIGNAME="ALU_0_regO">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ALU_0" PORT="regO"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="update" SIGIS="undef" SIGNAME="ALU_0_acc_update">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ALU_0" PORT="acc_update"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="acc" RIGHT="0" SIGIS="undef" SIGNAME="Accumulator_0_acc">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ALU_0" PORT="regA"/>
+            <CONNECTION INSTANCE="Register_O_0" PORT="output_data"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Instruction_Decoder_0" HWVERSION="1.0" INSTANCE="Instruction_Decoder_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Instruction_Decoder" VLNV="xilinx.com:module_ref:Instruction_Decoder:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Instruction_Decoder_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="3" NAME="instruction" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Register_0_instructionOut">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Register_0" PORT="instructionOut"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="shifter_flag" SIGIS="undef" SIGNAME="Shifter_0_shifter_flag">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Shifter_0" PORT="shifter_flag"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="loadA" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Register_A_0" PORT="loadA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="loadB" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Register_B_0" PORT="loadB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="loadO" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadO">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Register_O_0" PORT="loadO"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="MUX_0" SIGIS="undef" SIGNAME="Instruction_Decoder_0_MUX_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_0" PORT="MUX_Sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="MUX_1" SIGIS="undef" SIGNAME="Instruction_Decoder_0_MUX_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_1" PORT="MUX_Sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="shift_direction" SIGIS="undef" SIGNAME="Instruction_Decoder_0_shift_direction">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Shifter_0" PORT="shift_direction"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="shifter_en" SIGIS="undef" SIGNAME="Instruction_Decoder_0_shifter_en">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Shifter_0" PORT="shifter_en"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="load_shifter" SIGIS="undef" SIGNAME="Instruction_Decoder_0_load_shifter">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Shifter_0" PORT="load_shifter"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="ALU_Sel" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Decoder_0_ALU_Sel">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ALU_0" PORT="ALU_Sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="update_PC" SIGIS="undef" SIGNAME="Instruction_Decoder_0_update_PC">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Program_counter_0" PORT="update"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="acc_reset" SIGIS="rst" SIGNAME="Instruction_Decoder_0_acc_reset">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Accumulator_0" PORT="reset"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Instruction_Register_0" HWVERSION="1.0" INSTANCE="Instruction_Register_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Instruction_Register" VLNV="xilinx.com:module_ref:Instruction_Register:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Instruction_Register_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="instructionIn" RIGHT="0" SIGIS="undef" SIGNAME="ROM_0_data">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ROM_0" PORT="data"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="instructionOut" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Register_0_instructionOut">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="instruction"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/MUX_0" HWVERSION="1.0" INSTANCE="MUX_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="MUX" VLNV="xilinx.com:module_ref:MUX:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_MUX_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="A" RIGHT="0" SIGIS="undef" SIGNAME="Register_A_0_regA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Register_A_0" PORT="regA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="B" RIGHT="0" SIGIS="undef" SIGNAME="Register_B_0_regB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Register_B_0" PORT="regB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="MUX_Sel" SIGIS="undef" SIGNAME="Instruction_Decoder_0_MUX_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="MUX_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="MUX_Reg" RIGHT="0" SIGIS="undef" SIGNAME="MUX_0_MUX_Reg">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_1" PORT="A"/>
+            <CONNECTION INSTANCE="Shifter_0" PORT="data_in"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/MUX_1" HWVERSION="1.0" INSTANCE="MUX_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="MUX" VLNV="xilinx.com:module_ref:MUX:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_MUX_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="A" RIGHT="0" SIGIS="undef" SIGNAME="MUX_0_MUX_Reg">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_0" PORT="MUX_Reg"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="B" RIGHT="0" SIGIS="undef" SIGNAME="Shifter_0_data_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Shifter_0" PORT="data_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="MUX_Sel" SIGIS="undef" SIGNAME="Instruction_Decoder_0_MUX_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="MUX_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="MUX_Reg" RIGHT="0" SIGIS="undef" SIGNAME="MUX_1_MUX_Reg">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ALU_0" PORT="regB"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Program_counter_0" HWVERSION="1.0" INSTANCE="Program_counter_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Program_counter" VLNV="xilinx.com:module_ref:Program_counter:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Program_counter_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="start" SIGIS="undef" SIGNAME="External_Ports_start_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="start_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="update" SIGIS="undef" SIGNAME="Instruction_Decoder_0_update_PC">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="update_PC"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="4" NAME="currentPC" RIGHT="0" SIGIS="undef" SIGNAME="Program_counter_0_currentPC">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="currentPC_0"/>
+            <CONNECTION INSTANCE="ROM_0" PORT="address"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/ROM_0" HWVERSION="1.0" INSTANCE="ROM_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ROM" VLNV="xilinx.com:module_ref:ROM:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_ROM_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="4" NAME="address" RIGHT="0" SIGIS="undef" SIGNAME="Program_counter_0_currentPC">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Program_counter_0" PORT="currentPC"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="data" RIGHT="0" SIGIS="undef" SIGNAME="ROM_0_data">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Register_0" PORT="instructionIn"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Register_A_0" HWVERSION="1.0" INSTANCE="Register_A_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Register_A" VLNV="xilinx.com:module_ref:Register_A:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Register_A_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="A0" SIGIS="undef" SIGNAME="External_Ports_A0_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A0_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="A1" SIGIS="undef" SIGNAME="External_Ports_A1_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A1_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="A2" SIGIS="undef" SIGNAME="External_Ports_A2_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A2_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="A3" SIGIS="undef" SIGNAME="External_Ports_A3_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="A3_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="loadA" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="regA" RIGHT="0" SIGIS="undef" SIGNAME="Register_A_0_regA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_0" PORT="A"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Register_B_0" HWVERSION="1.0" INSTANCE="Register_B_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Register_B" VLNV="xilinx.com:module_ref:Register_B:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Register_B_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="B0" SIGIS="undef" SIGNAME="External_Ports_B0_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B0_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="B1" SIGIS="undef" SIGNAME="External_Ports_B1_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B1_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="B2" SIGIS="undef" SIGNAME="External_Ports_B2_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B2_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="B3" SIGIS="undef" SIGNAME="External_Ports_B3_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="B3_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="loadB" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadB"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="regB" RIGHT="0" SIGIS="undef" SIGNAME="Register_B_0_regB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_0" PORT="B"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Register_O_0" HWVERSION="1.0" INSTANCE="Register_O_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Register_O" VLNV="xilinx.com:module_ref:Register_O:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Register_O_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="output_data" RIGHT="0" SIGIS="undef" SIGNAME="Accumulator_0_acc">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Accumulator_0" PORT="acc"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="loadO" SIGIS="undef" SIGNAME="Instruction_Decoder_0_loadO">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadO"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="regO" RIGHT="0" SIGIS="undef" SIGNAME="Register_O_0_regO">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="regO_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/Shifter_0" HWVERSION="1.0" INSTANCE="Shifter_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Shifter" VLNV="xilinx.com:module_ref:Shifter:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="final_design_Shifter_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="7" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="MUX_0_MUX_Reg">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_0" PORT="MUX_Reg"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="shift_direction" SIGIS="undef" SIGNAME="Instruction_Decoder_0_shift_direction">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="shift_direction"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="shifter_en" SIGIS="undef" SIGNAME="Instruction_Decoder_0_shifter_en">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="shifter_en"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="load_shifter" SIGIS="undef" SIGNAME="Instruction_Decoder_0_load_shifter">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="load_shifter"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="data_out" RIGHT="0" SIGIS="undef" SIGNAME="Shifter_0_data_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="MUX_1" PORT="B"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="shifter_flag" SIGIS="undef" SIGNAME="Shifter_0_shifter_flag">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="shifter_flag"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

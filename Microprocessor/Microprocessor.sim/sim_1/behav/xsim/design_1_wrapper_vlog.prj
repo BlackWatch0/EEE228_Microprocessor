@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../Microprocessor.srcs/sources_1/new/Register_B.v" \
+"../../../../Microprocessor.srcs/sources_1/new/Instruction_Decoder.v" \
+"../../../../Microprocessor.srcs/sources_1/new/Register_A.v" \
+"../../../../Microprocessor.ip_user_files/bd/design_1/ip/design_1_Register_B_0_0/sim/design_1_Register_B_0_0.v" \
+"../../../../Microprocessor.ip_user_files/bd/design_1/ip/design_1_Instruction_Decoder_0_0/sim/design_1_Instruction_Decoder_0_0.v" \
+"../../../../Microprocessor.ip_user_files/bd/design_1/ip/design_1_Register_A_0_0/sim/design_1_Register_A_0_0.v" \
+"../../../../Microprocessor.ip_user_files/bd/design_1/sim/design_1.v" \
+"../../../../Microprocessor.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
