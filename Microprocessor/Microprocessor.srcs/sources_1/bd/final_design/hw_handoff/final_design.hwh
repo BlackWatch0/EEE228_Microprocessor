@@ -1,17 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Mar  1 14:18:34 2024" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Mar 15 15:25:55 2024" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="final_design" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
   <EXTERNALPORTS>
-    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_0" SIGIS="clk" SIGNAME="External_Ports_clk_0">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="Instruction_Register_0" PORT="clk"/>
-        <CONNECTION INSTANCE="Accumulator_0" PORT="clk"/>
-        <CONNECTION INSTANCE="Shifter_0" PORT="clk"/>
-        <CONNECTION INSTANCE="Program_counter_0" PORT="clk"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="I" NAME="A0_0" SIGIS="undef" SIGNAME="External_Ports_A0_0">
       <CONNECTIONS>
         <CONNECTION INSTANCE="Register_A_0" PORT="A0"/>
@@ -52,19 +44,14 @@
         <CONNECTION INSTANCE="Register_B_0" PORT="B3"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="7" NAME="regO_0" RIGHT="0" SIGIS="undef" SIGNAME="Register_O_0_regO">
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_0" SIGIS="clk" SIGNAME="External_Ports_clk_0">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="Register_O_0" PORT="regO"/>
+        <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="clk"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="I" NAME="start_0" SIGIS="undef" SIGNAME="External_Ports_start_0">
+    <PORT DIR="O" LEFT="7" NAME="Register_Output_0" RIGHT="0" SIGIS="undef" SIGNAME="Register_O_0_Register_Output">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="Program_counter_0" PORT="start"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" LEFT="4" NAME="currentPC_0" RIGHT="0" SIGIS="undef" SIGNAME="Program_counter_0_currentPC">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="Program_counter_0" PORT="currentPC"/>
+        <CONNECTION INSTANCE="Register_O_0" PORT="Register_Output"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -94,9 +81,9 @@
             <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="ALU_Sel"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="acc_update" SIGIS="undef" SIGNAME="ALU_0_acc_update">
+        <PORT DIR="I" NAME="ALU_update" SIGIS="undef" SIGNAME="Instruction_Decoder_0_ALU_update">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Accumulator_0" PORT="update"/>
+            <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="ALU_update"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="regO" RIGHT="0" SIGIS="undef" SIGNAME="ALU_0_regO">
@@ -114,11 +101,6 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="Instruction_Decoder_0_acc_reset">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="acc_reset"/>
@@ -129,15 +111,10 @@
             <CONNECTION INSTANCE="ALU_0" PORT="regO"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="update" SIGIS="undef" SIGNAME="ALU_0_acc_update">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ALU_0" PORT="acc_update"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="7" NAME="acc" RIGHT="0" SIGIS="undef" SIGNAME="Accumulator_0_acc">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ALU_0" PORT="regA"/>
             <CONNECTION INSTANCE="Register_O_0" PORT="output_data"/>
+            <CONNECTION INSTANCE="ALU_0" PORT="regA"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -153,6 +130,11 @@
         <PORT DIR="I" LEFT="3" NAME="instruction" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Register_0_instructionOut">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Instruction_Register_0" PORT="instructionOut"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="shifter_flag" SIGIS="undef" SIGNAME="Shifter_0_shifter_flag">
@@ -205,9 +187,14 @@
             <CONNECTION INSTANCE="ALU_0" PORT="ALU_Sel"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="ALU_update" SIGIS="undef" SIGNAME="Instruction_Decoder_0_ALU_update">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ALU_0" PORT="ALU_update"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="update_PC" SIGIS="undef" SIGNAME="Instruction_Decoder_0_update_PC">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Program_counter_0" PORT="update"/>
+            <CONNECTION INSTANCE="Program_counter_0" PORT="update_PC"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="acc_reset" SIGIS="rst" SIGNAME="Instruction_Decoder_0_acc_reset">
@@ -225,14 +212,14 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" LEFT="3" NAME="instructionIn" RIGHT="0" SIGIS="undef" SIGNAME="ROM_0_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ROM_0" PORT="data"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="update" SIGIS="undef" SIGNAME="ROM_0_update">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ROM_0" PORT="update"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="instructionOut" RIGHT="0" SIGIS="undef" SIGNAME="Instruction_Register_0_instructionOut">
@@ -267,8 +254,8 @@
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="MUX_Reg" RIGHT="0" SIGIS="undef" SIGNAME="MUX_0_MUX_Reg">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="MUX_1" PORT="A"/>
             <CONNECTION INSTANCE="Shifter_0" PORT="data_in"/>
+            <CONNECTION INSTANCE="MUX_1" PORT="A"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -311,24 +298,13 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="start" SIGIS="undef" SIGNAME="External_Ports_start_0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="start_0"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="update" SIGIS="undef" SIGNAME="Instruction_Decoder_0_update_PC">
+        <PORT DIR="I" NAME="update_PC" SIGIS="undef" SIGNAME="Instruction_Decoder_0_update_PC">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="update_PC"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="4" NAME="currentPC" RIGHT="0" SIGIS="undef" SIGNAME="Program_counter_0_currentPC">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="currentPC_0"/>
             <CONNECTION INSTANCE="ROM_0" PORT="address"/>
           </CONNECTIONS>
         </PORT>
@@ -350,6 +326,11 @@
         <PORT DIR="O" LEFT="3" NAME="data" RIGHT="0" SIGIS="undef" SIGNAME="ROM_0_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Instruction_Register_0" PORT="instructionIn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="update" SIGIS="undef" SIGNAME="ROM_0_update">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Instruction_Register_0" PORT="update"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -387,7 +368,7 @@
             <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="regA" RIGHT="0" SIGIS="undef" SIGNAME="Register_A_0_regA">
+        <PORT DIR="O" LEFT="7" NAME="regA" RIGHT="0" SIGIS="undef" SIGNAME="Register_A_0_regA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MUX_0" PORT="A"/>
           </CONNECTIONS>
@@ -427,7 +408,7 @@
             <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadB"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="regB" RIGHT="0" SIGIS="undef" SIGNAME="Register_B_0_regB">
+        <PORT DIR="O" LEFT="7" NAME="regB" RIGHT="0" SIGIS="undef" SIGNAME="Register_B_0_regB">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MUX_0" PORT="B"/>
           </CONNECTIONS>
@@ -452,9 +433,9 @@
             <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="loadO"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="regO" RIGHT="0" SIGIS="undef" SIGNAME="Register_O_0_regO">
+        <PORT DIR="O" LEFT="7" NAME="Register_Output" RIGHT="0" SIGIS="undef" SIGNAME="Register_O_0_Register_Output">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="regO_0"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="Register_Output_0"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -485,11 +466,6 @@
         <PORT DIR="I" NAME="load_shifter" SIGIS="undef" SIGNAME="Instruction_Decoder_0_load_shifter">
           <CONNECTIONS>
             <CONNECTION INSTANCE="Instruction_Decoder_0" PORT="load_shifter"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk_0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clk_0"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="data_out" RIGHT="0" SIGIS="undef" SIGNAME="Shifter_0_data_out">

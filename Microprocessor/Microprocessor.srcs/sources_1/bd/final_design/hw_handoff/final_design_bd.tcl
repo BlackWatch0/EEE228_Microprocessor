@@ -172,10 +172,8 @@ proc create_root_design { parentCell } {
   set B1_0 [ create_bd_port -dir I B1_0 ]
   set B2_0 [ create_bd_port -dir I B2_0 ]
   set B3_0 [ create_bd_port -dir I B3_0 ]
+  set Register_Output_0 [ create_bd_port -dir O -from 7 -to 0 Register_Output_0 ]
   set clk_0 [ create_bd_port -dir I -type clk clk_0 ]
-  set currentPC_0 [ create_bd_port -dir O -from 4 -to 0 currentPC_0 ]
-  set regO_0 [ create_bd_port -dir O -from 7 -to 0 regO_0 ]
-  set start_0 [ create_bd_port -dir I start_0 ]
 
   # Create instance: ALU_0, and set properties
   set block_name ALU
@@ -314,7 +312,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net A1_0_1 [get_bd_ports A1_0] [get_bd_pins Register_A_0/A1]
   connect_bd_net -net A2_0_1 [get_bd_ports A2_0] [get_bd_pins Register_A_0/A2]
   connect_bd_net -net A3_0_1 [get_bd_ports A3_0] [get_bd_pins Register_A_0/A3]
-  connect_bd_net -net ALU_0_acc_update [get_bd_pins ALU_0/acc_update] [get_bd_pins Accumulator_0/update]
   connect_bd_net -net ALU_0_regO [get_bd_pins ALU_0/regO] [get_bd_pins Accumulator_0/alu_result]
   connect_bd_net -net Accumulator_0_acc [get_bd_pins ALU_0/regA] [get_bd_pins Accumulator_0/acc] [get_bd_pins Register_O_0/output_data]
   connect_bd_net -net B0_0_1 [get_bd_ports B0_0] [get_bd_pins Register_B_0/B0]
@@ -331,19 +328,20 @@ proc create_root_design { parentCell } {
   connect_bd_net -net Instruction_Decoder_0_load_shifter [get_bd_pins Instruction_Decoder_0/load_shifter] [get_bd_pins Shifter_0/load_shifter]
   connect_bd_net -net Instruction_Decoder_0_shift_direction [get_bd_pins Instruction_Decoder_0/shift_direction] [get_bd_pins Shifter_0/shift_direction]
   connect_bd_net -net Instruction_Decoder_0_shifter_en [get_bd_pins Instruction_Decoder_0/shifter_en] [get_bd_pins Shifter_0/shifter_en]
-  connect_bd_net -net Instruction_Decoder_0_update_PC [get_bd_pins Instruction_Decoder_0/update_PC] [get_bd_pins Program_counter_0/update]
+  connect_bd_net -net Instruction_Decoder_0_update_PC [get_bd_pins Instruction_Decoder_0/update_PC] [get_bd_pins Program_counter_0/update_PC]
   connect_bd_net -net Instruction_Register_0_instructionOut [get_bd_pins Instruction_Decoder_0/instruction] [get_bd_pins Instruction_Register_0/instructionOut]
   connect_bd_net -net MUX_0_MUX_Reg [get_bd_pins MUX_0/MUX_Reg] [get_bd_pins MUX_1/A] [get_bd_pins Shifter_0/data_in]
+  connect_bd_net -net MUX_1_ALU_update_out [get_bd_pins ALU_0/ALU_update] [get_bd_pins Instruction_Decoder_0/ALU_update]
   connect_bd_net -net MUX_1_MUX_Reg [get_bd_pins ALU_0/regB] [get_bd_pins MUX_1/MUX_Reg]
-  connect_bd_net -net Program_counter_0_currentPC [get_bd_ports currentPC_0] [get_bd_pins Program_counter_0/currentPC] [get_bd_pins ROM_0/address]
+  connect_bd_net -net Program_counter_0_currentPC [get_bd_pins Program_counter_0/currentPC] [get_bd_pins ROM_0/address]
   connect_bd_net -net ROM_0_data [get_bd_pins Instruction_Register_0/instructionIn] [get_bd_pins ROM_0/data]
+  connect_bd_net -net ROM_0_update [get_bd_pins Instruction_Register_0/update] [get_bd_pins ROM_0/update]
   connect_bd_net -net Register_A_0_regA [get_bd_pins MUX_0/A] [get_bd_pins Register_A_0/regA]
   connect_bd_net -net Register_B_0_regB [get_bd_pins MUX_0/B] [get_bd_pins Register_B_0/regB]
-  connect_bd_net -net Register_O_0_regO [get_bd_ports regO_0] [get_bd_pins Register_O_0/regO]
+  connect_bd_net -net Register_O_0_Register_Output [get_bd_ports Register_Output_0] [get_bd_pins Register_O_0/Register_Output]
   connect_bd_net -net Shifter_0_data_out [get_bd_pins MUX_1/B] [get_bd_pins Shifter_0/data_out]
-  connect_bd_net -net Shifter_0_shifterflag [get_bd_pins Instruction_Decoder_0/shifter_flag] [get_bd_pins Shifter_0/shifter_flag]
-  connect_bd_net -net clk_0_1 [get_bd_ports clk_0] [get_bd_pins Accumulator_0/clk] [get_bd_pins Instruction_Register_0/clk] [get_bd_pins Program_counter_0/clk] [get_bd_pins Shifter_0/clk]
-  connect_bd_net -net start_0_1 [get_bd_ports start_0] [get_bd_pins Program_counter_0/start]
+  connect_bd_net -net Shifter_0_shifter_flag [get_bd_pins Instruction_Decoder_0/shifter_flag] [get_bd_pins Shifter_0/shifter_flag]
+  connect_bd_net -net clk_0_1 [get_bd_ports clk_0] [get_bd_pins Instruction_Decoder_0/clk]
 
   # Create address segments
 

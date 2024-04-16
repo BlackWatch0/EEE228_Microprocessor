@@ -56,14 +56,17 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module final_design_ROM_0_0 (
   address,
-  data
+  data,
+  update
 );
 
 input wire [4 : 0] address;
 output wire [3 : 0] data;
+output wire update;
 
   ROM inst (
     .address(address),
-    .data(data)
+    .data(data),
+    .update(update)
   );
 endmodule

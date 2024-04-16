@@ -55,20 +55,18 @@
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module final_design_Instruction_Register_0_0 (
-  clk,
   instructionIn,
+  update,
   instructionOut
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN final_design_clk_0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
-input wire clk;
 input wire [3 : 0] instructionIn;
+input wire update;
 output wire [3 : 0] instructionOut;
 
   Instruction_Register inst (
-    .clk(clk),
     .instructionIn(instructionIn),
+    .update(update),
     .instructionOut(instructionOut)
   );
 endmodule

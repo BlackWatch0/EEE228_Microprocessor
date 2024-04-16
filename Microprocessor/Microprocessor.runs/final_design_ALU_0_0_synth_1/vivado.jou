@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2700185 on Thu Oct 24 18:46:05 MDT 2019
+# IP Build 2699827 on Thu Oct 24 21:16:38 MDT 2019
+# Start of session at: Fri Mar 15 15:26:37 2024
+# Process ID: 10936
+# Current directory: U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.runs/final_design_ALU_0_0_synth_1
+# Command line: vivado.exe -log final_design_ALU_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source final_design_ALU_0_0.tcl
+# Log file: U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.runs/final_design_ALU_0_0_synth_1/final_design_ALU_0_0.vds
+# Journal file: U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.runs/final_design_ALU_0_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source final_design_ALU_0_0.tcl -notrace

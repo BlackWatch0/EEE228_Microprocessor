@@ -57,6 +57,7 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module final_design_Instruction_Decoder_0_0 (
   instruction,
+  clk,
   shifter_flag,
   loadA,
   loadB,
@@ -67,11 +68,15 @@ module final_design_Instruction_Decoder_0_0 (
   shifter_en,
   load_shifter,
   ALU_Sel,
+  ALU_update,
   update_PC,
   acc_reset
 );
 
 input wire [3 : 0] instruction;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN final_design_clk_0, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
+input wire clk;
 input wire shifter_flag;
 output wire loadA;
 output wire loadB;
@@ -82,6 +87,7 @@ output wire shift_direction;
 output wire shifter_en;
 output wire load_shifter;
 output wire [3 : 0] ALU_Sel;
+output wire ALU_update;
 output wire update_PC;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME acc_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 acc_reset RST" *)
@@ -89,6 +95,7 @@ output wire acc_reset;
 
   Instruction_Decoder inst (
     .instruction(instruction),
+    .clk(clk),
     .shifter_flag(shifter_flag),
     .loadA(loadA),
     .loadB(loadB),
@@ -99,6 +106,7 @@ output wire acc_reset;
     .shifter_en(shifter_en),
     .load_shifter(load_shifter),
     .ALU_Sel(ALU_Sel),
+    .ALU_update(ALU_update),
     .update_PC(update_PC),
     .acc_reset(acc_reset)
   );

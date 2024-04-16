@@ -68,7 +68,7 @@ input wire B1;
 input wire B2;
 input wire B3;
 input wire loadB;
-output wire [3 : 0] regB;
+output wire [7 : 0] regB;
 
   Register_B inst (
     .B0(B0),

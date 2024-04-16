@@ -21,19 +21,13 @@
 
 
 module Program_counter(
-    input clk,
-    input start,
-    input update,
-    output reg [4:0] currentPC = 5'b11111
+    input update_PC,
+    output reg [4:0] currentPC=5'b11111
 );
 
-always @(posedge clk or posedge start or posedge update) begin
-    if (start) begin
-        currentPC <= 5'b0;
-    end
-    else if (update) begin
-        currentPC <= currentPC + 5'b0001;
-    end
+
+always @(update_PC) begin
+    currentPC <= currentPC + 5'b00001;
 end
 
 endmodule

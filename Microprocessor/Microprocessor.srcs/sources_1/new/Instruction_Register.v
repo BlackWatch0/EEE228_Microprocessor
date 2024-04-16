@@ -21,12 +21,12 @@
 
 
 module Instruction_Register(
-    input clk,
     input [3:0] instructionIn,
-    output reg [3:0] instructionOut
+    input update,
+    output reg [3:0] instructionOut = 4'b1111
 );
 
-always @(posedge clk) begin
+always @(update) begin
     instructionOut <= instructionIn;
 end
 

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x4E8B322E970A722B",
+      "boundary_crc": "0xE751EB915AA74C53",
       "device": "xc7a100tcsg324-1",
       "name": "final_design",
       "synth_flow_mode": "Hierarchical",
@@ -9,42 +9,20 @@
       "validated": "true"
     },
     "design_tree": {
-      "ALU_0": "",
-      "Register_A_0": "",
-      "Register_B_0": "",
+      "Instruction_Register_0": "",
+      "Program_counter_0": "",
       "Register_O_0": "",
+      "Shifter_0": "",
       "MUX_0": "",
       "MUX_1": "",
-      "Instruction_Register_0": "",
       "Instruction_Decoder_0": "",
-      "Accumulator_0": "",
-      "Shifter_0": "",
-      "Program_counter_0": "",
-      "ROM_0": ""
+      "Register_A_0": "",
+      "Register_B_0": "",
+      "ROM_0": "",
+      "ALU_0": "",
+      "Accumulator_0": ""
     },
     "ports": {
-      "clk_0": {
-        "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "CLK_DOMAIN": {
-            "value": "final_design_clk_0",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.000",
-            "value_src": "default"
-          }
-        }
-      },
       "A0_0": {
         "direction": "I"
       },
@@ -69,113 +47,74 @@
       "B3_0": {
         "direction": "I"
       },
-      "regO_0": {
+      "clk_0": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "final_design_clk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "Register_Output_0": {
         "direction": "O",
         "left": "7",
-        "right": "0"
-      },
-      "start_0": {
-        "direction": "I"
-      },
-      "currentPC_0": {
-        "direction": "O",
-        "left": "4",
         "right": "0"
       }
     },
     "components": {
-      "ALU_0": {
-        "vlnv": "xilinx.com:module_ref:ALU:1.0",
-        "xci_name": "final_design_ALU_0_0",
+      "Instruction_Register_0": {
+        "vlnv": "xilinx.com:module_ref:Instruction_Register:1.0",
+        "xci_name": "final_design_Instruction_Register_0_0",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "ALU",
+          "ref_name": "Instruction_Register",
           "boundary_crc": "0x0"
         },
         "ports": {
-          "regA": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "regB": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "ALU_Sel": {
+          "instructionIn": {
             "direction": "I",
             "left": "3",
             "right": "0"
           },
-          "acc_update": {
-            "direction": "O"
-          },
-          "regO": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          }
-        }
-      },
-      "Register_A_0": {
-        "vlnv": "xilinx.com:module_ref:Register_A:1.0",
-        "xci_name": "final_design_Register_A_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "Register_A",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "A0": {
+          "update": {
             "direction": "I"
           },
-          "A1": {
-            "direction": "I"
-          },
-          "A2": {
-            "direction": "I"
-          },
-          "A3": {
-            "direction": "I"
-          },
-          "loadA": {
-            "direction": "I"
-          },
-          "regA": {
+          "instructionOut": {
             "direction": "O",
             "left": "3",
             "right": "0"
           }
         }
       },
-      "Register_B_0": {
-        "vlnv": "xilinx.com:module_ref:Register_B:1.0",
-        "xci_name": "final_design_Register_B_0_0",
+      "Program_counter_0": {
+        "vlnv": "xilinx.com:module_ref:Program_counter:1.0",
+        "xci_name": "final_design_Program_counter_0_0",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "Register_B",
+          "ref_name": "Program_counter",
           "boundary_crc": "0x0"
         },
         "ports": {
-          "B0": {
+          "update_PC": {
             "direction": "I"
           },
-          "B1": {
-            "direction": "I"
-          },
-          "B2": {
-            "direction": "I"
-          },
-          "B3": {
-            "direction": "I"
-          },
-          "loadB": {
-            "direction": "I"
-          },
-          "regB": {
+          "currentPC": {
             "direction": "O",
-            "left": "3",
+            "left": "4",
             "right": "0"
           }
         }
@@ -197,10 +136,43 @@
           "loadO": {
             "direction": "I"
           },
-          "regO": {
+          "Register_Output": {
             "direction": "O",
             "left": "7",
             "right": "0"
+          }
+        }
+      },
+      "Shifter_0": {
+        "vlnv": "xilinx.com:module_ref:Shifter:1.0",
+        "xci_name": "final_design_Shifter_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Shifter",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "data_in": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "shift_direction": {
+            "direction": "I"
+          },
+          "shifter_en": {
+            "direction": "I"
+          },
+          "load_shifter": {
+            "direction": "I"
+          },
+          "data_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "shifter_flag": {
+            "direction": "O"
           }
         }
       },
@@ -262,37 +234,6 @@
           }
         }
       },
-      "Instruction_Register_0": {
-        "vlnv": "xilinx.com:module_ref:Instruction_Register:1.0",
-        "xci_name": "final_design_Instruction_Register_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "Instruction_Register",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "final_design_clk_0",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "instructionIn": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "instructionOut": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          }
-        }
-      },
       "Instruction_Decoder_0": {
         "vlnv": "xilinx.com:module_ref:Instruction_Decoder:1.0",
         "xci_name": "final_design_Instruction_Decoder_0_0",
@@ -306,6 +247,16 @@
             "direction": "I",
             "left": "3",
             "right": "0"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "final_design_clk_0",
+                "value_src": "default_prop"
+              }
+            }
           },
           "shifter_flag": {
             "direction": "I"
@@ -339,6 +290,9 @@
             "left": "3",
             "right": "0"
           },
+          "ALU_update": {
+            "direction": "O"
+          },
           "update_PC": {
             "direction": "O"
           },
@@ -348,119 +302,64 @@
           }
         }
       },
-      "Accumulator_0": {
-        "vlnv": "xilinx.com:module_ref:Accumulator:1.0",
-        "xci_name": "final_design_Accumulator_0_0",
+      "Register_A_0": {
+        "vlnv": "xilinx.com:module_ref:Register_A:1.0",
+        "xci_name": "final_design_Register_A_0_0",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "Accumulator",
+          "ref_name": "Register_A",
           "boundary_crc": "0x0"
         },
         "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "reset",
-                "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "final_design_clk_0",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "reset": {
-            "type": "rst",
+          "A0": {
             "direction": "I"
           },
-          "alu_result": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "update": {
+          "A1": {
             "direction": "I"
           },
-          "acc": {
+          "A2": {
+            "direction": "I"
+          },
+          "A3": {
+            "direction": "I"
+          },
+          "loadA": {
+            "direction": "I"
+          },
+          "regA": {
             "direction": "O",
             "left": "7",
             "right": "0"
           }
         }
       },
-      "Shifter_0": {
-        "vlnv": "xilinx.com:module_ref:Shifter:1.0",
-        "xci_name": "final_design_Shifter_0_0",
+      "Register_B_0": {
+        "vlnv": "xilinx.com:module_ref:Register_B:1.0",
+        "xci_name": "final_design_Register_B_0_0",
         "reference_info": {
           "ref_type": "hdl",
-          "ref_name": "Shifter",
+          "ref_name": "Register_B",
           "boundary_crc": "0x0"
         },
         "ports": {
-          "data_in": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "shift_direction": {
+          "B0": {
             "direction": "I"
           },
-          "shifter_en": {
+          "B1": {
             "direction": "I"
           },
-          "load_shifter": {
+          "B2": {
             "direction": "I"
           },
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "final_design_clk_0",
-                "value_src": "default_prop"
-              }
-            }
+          "B3": {
+            "direction": "I"
           },
-          "data_out": {
+          "loadB": {
+            "direction": "I"
+          },
+          "regB": {
             "direction": "O",
             "left": "7",
-            "right": "0"
-          },
-          "shifter_flag": {
-            "direction": "O"
-          }
-        }
-      },
-      "Program_counter_0": {
-        "vlnv": "xilinx.com:module_ref:Program_counter:1.0",
-        "xci_name": "final_design_Program_counter_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "Program_counter",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "final_design_clk_0",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "start": {
-            "direction": "I"
-          },
-          "update": {
-            "direction": "I"
-          },
-          "currentPC": {
-            "direction": "O",
-            "left": "4",
             "right": "0"
           }
         }
@@ -483,32 +382,73 @@
             "direction": "O",
             "left": "3",
             "right": "0"
+          },
+          "update": {
+            "direction": "O"
+          }
+        }
+      },
+      "ALU_0": {
+        "vlnv": "xilinx.com:module_ref:ALU:1.0",
+        "xci_name": "final_design_ALU_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "ALU",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "regA": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "regB": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "ALU_Sel": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "ALU_update": {
+            "direction": "I"
+          },
+          "regO": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "Accumulator_0": {
+        "vlnv": "xilinx.com:module_ref:Accumulator:1.0",
+        "xci_name": "final_design_Accumulator_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Accumulator",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "alu_result": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "acc": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
           }
         }
       }
     },
     "nets": {
-      "Instruction_Register_0_instructionOut": {
-        "ports": [
-          "Instruction_Register_0/instructionOut",
-          "Instruction_Decoder_0/instruction"
-        ]
-      },
-      "Instruction_Decoder_0_update_PC": {
-        "ports": [
-          "Instruction_Decoder_0/update_PC",
-          "Program_counter_0/update"
-        ]
-      },
-      "clk_0_1": {
-        "ports": [
-          "clk_0",
-          "Instruction_Register_0/clk",
-          "Accumulator_0/clk",
-          "Shifter_0/clk",
-          "Program_counter_0/clk"
-        ]
-      },
       "Instruction_Decoder_0_loadA": {
         "ports": [
           "Instruction_Decoder_0/loadA",
@@ -527,54 +467,16 @@
           "Register_O_0/loadO"
         ]
       },
-      "Register_A_0_regA": {
-        "ports": [
-          "Register_A_0/regA",
-          "MUX_0/A"
-        ]
-      },
       "Register_B_0_regB": {
         "ports": [
           "Register_B_0/regB",
           "MUX_0/B"
         ]
       },
-      "MUX_0_MUX_Reg": {
-        "ports": [
-          "MUX_0/MUX_Reg",
-          "MUX_1/A",
-          "Shifter_0/data_in"
-        ]
-      },
-      "Shifter_0_shifterflag": {
-        "ports": [
-          "Shifter_0/shifter_flag",
-          "Instruction_Decoder_0/shifter_flag"
-        ]
-      },
       "Shifter_0_data_out": {
         "ports": [
           "Shifter_0/data_out",
           "MUX_1/B"
-        ]
-      },
-      "MUX_1_MUX_Reg": {
-        "ports": [
-          "MUX_1/MUX_Reg",
-          "ALU_0/regB"
-        ]
-      },
-      "Accumulator_0_acc": {
-        "ports": [
-          "Accumulator_0/acc",
-          "ALU_0/regA",
-          "Register_O_0/output_data"
-        ]
-      },
-      "ALU_0_regO": {
-        "ports": [
-          "ALU_0/regO",
-          "Accumulator_0/alu_result"
         ]
       },
       "Instruction_Decoder_0_acc_reset": {
@@ -667,24 +569,6 @@
           "Shifter_0/load_shifter"
         ]
       },
-      "ALU_0_acc_update": {
-        "ports": [
-          "ALU_0/acc_update",
-          "Accumulator_0/update"
-        ]
-      },
-      "Register_O_0_regO": {
-        "ports": [
-          "Register_O_0/regO",
-          "regO_0"
-        ]
-      },
-      "start_0_1": {
-        "ports": [
-          "start_0",
-          "Program_counter_0/start"
-        ]
-      },
       "ROM_0_data": {
         "ports": [
           "ROM_0/data",
@@ -694,8 +578,81 @@
       "Program_counter_0_currentPC": {
         "ports": [
           "Program_counter_0/currentPC",
-          "currentPC_0",
           "ROM_0/address"
+        ]
+      },
+      "Instruction_Register_0_instructionOut": {
+        "ports": [
+          "Instruction_Register_0/instructionOut",
+          "Instruction_Decoder_0/instruction"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk_0",
+          "Instruction_Decoder_0/clk"
+        ]
+      },
+      "ROM_0_update": {
+        "ports": [
+          "ROM_0/update",
+          "Instruction_Register_0/update"
+        ]
+      },
+      "Register_A_0_regA": {
+        "ports": [
+          "Register_A_0/regA",
+          "MUX_0/A"
+        ]
+      },
+      "MUX_0_MUX_Reg": {
+        "ports": [
+          "MUX_0/MUX_Reg",
+          "Shifter_0/data_in",
+          "MUX_1/A"
+        ]
+      },
+      "Instruction_Decoder_0_update_PC": {
+        "ports": [
+          "Instruction_Decoder_0/update_PC",
+          "Program_counter_0/update_PC"
+        ]
+      },
+      "MUX_1_MUX_Reg": {
+        "ports": [
+          "MUX_1/MUX_Reg",
+          "ALU_0/regB"
+        ]
+      },
+      "Register_O_0_Register_Output": {
+        "ports": [
+          "Register_O_0/Register_Output",
+          "Register_Output_0"
+        ]
+      },
+      "Shifter_0_shifter_flag": {
+        "ports": [
+          "Shifter_0/shifter_flag",
+          "Instruction_Decoder_0/shifter_flag"
+        ]
+      },
+      "ALU_0_regO": {
+        "ports": [
+          "ALU_0/regO",
+          "Accumulator_0/alu_result"
+        ]
+      },
+      "Accumulator_0_acc": {
+        "ports": [
+          "Accumulator_0/acc",
+          "Register_O_0/output_data",
+          "ALU_0/regA"
+        ]
+      },
+      "MUX_1_ALU_update_out": {
+        "ports": [
+          "Instruction_Decoder_0/ALU_update",
+          "ALU_0/ALU_update"
         ]
       }
     }

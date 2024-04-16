@@ -55,23 +55,15 @@
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module final_design_Program_counter_0_0 (
-  clk,
-  start,
-  update,
+  update_PC,
   currentPC
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN final_design_clk_0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
-input wire clk;
-input wire start;
-input wire update;
+input wire update_PC;
 output wire [4 : 0] currentPC;
 
   Program_counter inst (
-    .clk(clk),
-    .start(start),
-    .update(update),
+    .update_PC(update_PC),
     .currentPC(currentPC)
   );
 endmodule

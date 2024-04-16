@@ -23,11 +23,11 @@
 module Register_O(
     input [7:0] output_data,
     input wire loadO,
-    output reg [7:0] regO
+    output reg [7:0] Register_Output
 );
 
 always @(posedge loadO) begin
-    regO <= output_data;
+    Register_Output <= output_data;
 end
 
 endmodule

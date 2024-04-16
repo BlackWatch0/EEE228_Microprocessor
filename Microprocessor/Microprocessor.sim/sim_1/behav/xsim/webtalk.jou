@@ -1,12 +1,12 @@
 #-----------------------------------------------------------
 # Webtalk v2019.2 (64-bit)
-# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
-# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Fri Mar  1 00:45:14 2024
-# Process ID: 10564
-# Current directory: D:/CODE/Microprocessor/Microprocessor.sim/sim_1/behav/xsim
-# Command line: wbtcv.exe -mode batch -source D:/CODE/Microprocessor/Microprocessor.sim/sim_1/behav/xsim/xsim.dir/final_design_wrapper_tb_behav/webtalk/xsim_webtalk.tcl -notrace
-# Log file: D:/CODE/Microprocessor/Microprocessor.sim/sim_1/behav/xsim/webtalk.log
-# Journal file: D:/CODE/Microprocessor/Microprocessor.sim/sim_1/behav/xsim\webtalk.jou
+# SW Build 2700185 on Thu Oct 24 18:46:05 MDT 2019
+# IP Build 2699827 on Thu Oct 24 21:16:38 MDT 2019
+# Start of session at: Fri Mar 15 15:10:35 2024
+# Process ID: 6728
+# Current directory: U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.sim/sim_1/behav/xsim/xsim.dir/final_design_wrapper_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.sim/sim_1/behav/xsim\webtalk.jou
 #-----------------------------------------------------------
-source D:/CODE/Microprocessor/Microprocessor.sim/sim_1/behav/xsim/xsim.dir/final_design_wrapper_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+source U:/EEE228/EEE228_Microprocessor/Microprocessor/Microprocessor.sim/sim_1/behav/xsim/xsim.dir/final_design_wrapper_tb_behav/webtalk/xsim_webtalk.tcl -notrace

@@ -1,26 +1,19 @@
 module Instruction_Decoder(
     input [3:0] instruction,
-    // shifter flag input
+    input clk,
     input shifter_flag,
-    // LD_A output
     output reg loadA,
-    // LD_B output
     output reg loadB,
-    // LD_O output
     output reg loadO,
-    // MUX output
-    output reg MUX_0,
-    output reg MUX_1,
-    // Shifter output
+    output reg MUX_0=0,
+    output reg MUX_1=0,
     output reg shift_direction,
-    output reg shifter_en,
-    output reg load_shifter,
-    // ALU output
+    output reg shifter_en=0,
+    output reg load_shifter=0,
     output reg [3:0] ALU_Sel,
-    // update program counter
-    output reg update_PC,
-    // Accumulator output
-    output reg acc_reset
+    output reg ALU_update=0,
+    output reg update_PC = 0,
+    output reg acc_reset = 0
 );
 
 // Define operations
@@ -41,53 +34,86 @@ localparam OR           = 4'b1101;
 localparam XOR          = 4'b1110;
 localparam CLR_ACC      = 4'b1111;
 
+reg [1:0] counter=2'b00;
 
-
-
-always @(*) begin
-    // loadA init
-    loadA = 0;
-    // loadB init
-    loadB = 0;
-    // loadO init
-    loadO = 0;
-    // programe counter init
-    update_PC = 0;
-    // accumulator init
-    acc_reset = 0;
-    // shifter init
-    shifter_en = 0;
-    load_shifter = 0;
-    
-    case(instruction)
-        LD_A:       begin loadA = 1; MUX_0 = 0; MUX_1 = 0;end
-        LD_B:       begin loadB = 1; MUX_0 = 1; MUX_1 = 0;end
-        LD_O:       begin loadO = 1;end
-        LD_SH_A:    begin MUX_0 = 0; load_shifter = 1; shifter_en = 1;end
-        LD_SH_B:    begin MUX_0 = 1; load_shifter = 1; shifter_en = 1;end
-        SHR:        begin shifter_en = 1; shift_direction = 0;end
-        SHL:        begin shifter_en = 1; shift_direction = 1;end
-        ACC_NZ_A:   begin
-                        if(shifter_flag)begin
-                            ALU_Sel <= instruction;
-                            MUX_0 = 0; MUX_1 = 0;
-                        end
-                    end
-        ACC_NZ_SH:  begin
-                        if(shifter_flag)begin
-                            ALU_Sel <= instruction;
-                            MUX_1 = 1;
-                        end
-                    end
-        ADD:    ALU_Sel <= instruction;
-        SUB:    ALU_Sel <= instruction;
-        INV:    ALU_Sel <= instruction;
-        AND:    ALU_Sel <= instruction;
-        OR:     ALU_Sel <= instruction;
-        XOR:    ALU_Sel <= instruction;
-        CLR_ACC:    begin acc_reset=1;end
-        default:begin end
-    endcase
-    update_PC = 1;
+always @(clk) begin
+    counter = counter+2'b01;
+    case (counter)
+        2'b00:begin
+        loadA = 0;
+        loadB = 0;
+        loadO = 0;
+        shift_direction = 0;
+        acc_reset = 0;
+        end
+        // step 2
+        2'b01:begin
+        case(instruction)
+                LD_A:       begin MUX_0 = 0; MUX_1 = 0; end
+                LD_B:       begin MUX_0 = 1; MUX_1 = 0; end
+                LD_O:       begin end
+                LD_SH_A:    begin MUX_0 = 0; end
+                LD_SH_B:    begin MUX_0 = 1; end
+                SHR:        begin end
+                SHL:        begin end
+                ACC_NZ_A:   begin
+                                if(shifter_flag) begin
+                                    MUX_0 = 0; MUX_1 = 0;
+                                end
+                            end
+                ACC_NZ_SH:  begin
+                                if(shifter_flag) begin
+                                    MUX_0 = 0; MUX_1 = 1;
+                                end
+                            end
+                ADD:        begin end
+                SUB:        begin end
+                INV:        begin end
+                AND:        begin end
+                OR:         begin end
+                XOR:        begin end
+                CLR_ACC:    begin acc_reset = 1; end
+                default:    begin end
+        endcase
+        end
+        // step 3
+        2'b10:
+        begin
+        case(instruction)
+                LD_A:       begin loadA = 1; end
+                LD_B:       begin loadB = 1; end
+                LD_O:       begin loadO = 1; end
+                LD_SH_A:    begin load_shifter = ~load_shifter; end
+                LD_SH_B:    begin load_shifter = ~load_shifter; end
+                SHR:        begin shifter_en = ~shifter_en; shift_direction = 0; end
+                SHL:        begin shifter_en = ~shifter_en; shift_direction = 1; end
+                ACC_NZ_A:   begin
+                                if(shifter_flag) begin
+                                    ALU_Sel = 4'b0111;
+                                    ALU_update=~ALU_update;
+                                end
+                            end
+                ACC_NZ_SH:  begin
+                                if(shifter_flag) begin
+                                    ALU_Sel = 4'b1000;
+                                    ALU_update=~ALU_update;
+                                end
+                            end
+                ADD:        begin ALU_Sel <= instruction;ALU_update=~ALU_update; end
+                SUB:        begin ALU_Sel <= instruction;ALU_update=~ALU_update; end
+                INV:        begin ALU_Sel <= instruction;ALU_update=~ALU_update; end
+                AND:        begin ALU_Sel <= instruction;ALU_update=~ALU_update; end
+                OR:         begin ALU_Sel <= instruction;ALU_update=~ALU_update; end
+                XOR:        begin ALU_Sel <= instruction;ALU_update=~ALU_update; end
+                CLR_ACC:    begin acc_reset = 0; end
+                default:    begin end
+        endcase
+        end
+        2'b11:begin
+        // Step 4: Update program counter
+        update_PC = ~update_PC;
+        end
+        endcase
 end
+
 endmodule

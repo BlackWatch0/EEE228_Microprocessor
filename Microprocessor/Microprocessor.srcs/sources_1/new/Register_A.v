@@ -26,7 +26,7 @@ module Register_A(
     input wire A2,
     input wire A3,
     input wire loadA,
-    output reg [3:0] regA
+    output reg [7:0] regA
 );
 
 always @(posedge loadA) begin
@@ -34,6 +34,10 @@ always @(posedge loadA) begin
     regA[1] <= A1;
     regA[2] <= A2;
     regA[3] <= A3;
+    regA[4] <= 0;
+    regA[5] <= 0;
+    regA[6] <= 0;
+    regA[7] <= 0;
 end
 
 endmodule

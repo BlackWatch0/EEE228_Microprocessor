@@ -1,8 +1,8 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (win64) Build 2700185 Thu Oct 24 18:46:05 MDT 2019
-//Date        : Fri Mar  1 14:18:33 2024
-//Host        : TEN14B31F0D46B1 running 64-bit major release  (build 9200)
+//Date        : Fri Mar 15 15:25:55 2024
+//Host        : TEN14B31F0D48DB running 64-bit major release  (build 9200)
 //Command     : generate_target final_design.bd
 //Design      : final_design
 //Purpose     : IP block netlist
@@ -19,10 +19,8 @@ module final_design
     B1_0,
     B2_0,
     B3_0,
-    clk_0,
-    currentPC_0,
-    regO_0,
-    start_0);
+    Register_Output_0,
+    clk_0);
   input A0_0;
   input A1_0;
   input A2_0;
@@ -31,16 +29,13 @@ module final_design
   input B1_0;
   input B2_0;
   input B3_0;
+  output [7:0]Register_Output_0;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_0 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_0, CLK_DOMAIN final_design_clk_0, FREQ_HZ 100000000, INSERT_VIP 0, PHASE 0.000" *) input clk_0;
-  output [4:0]currentPC_0;
-  output [7:0]regO_0;
-  input start_0;
 
   wire A0_0_1;
   wire A1_0_1;
   wire A2_0_1;
   wire A3_0_1;
-  wire ALU_0_acc_update;
   wire [7:0]ALU_0_regO;
   wire [7:0]Accumulator_0_acc;
   wire B0_0_1;
@@ -60,16 +55,17 @@ module final_design
   wire Instruction_Decoder_0_update_PC;
   wire [3:0]Instruction_Register_0_instructionOut;
   wire [7:0]MUX_0_MUX_Reg;
+  wire MUX_1_ALU_update_out;
   wire [7:0]MUX_1_MUX_Reg;
   wire [4:0]Program_counter_0_currentPC;
   wire [3:0]ROM_0_data;
-  wire [3:0]Register_A_0_regA;
-  wire [3:0]Register_B_0_regB;
-  wire [7:0]Register_O_0_regO;
+  wire ROM_0_update;
+  wire [7:0]Register_A_0_regA;
+  wire [7:0]Register_B_0_regB;
+  wire [7:0]Register_O_0_Register_Output;
   wire [7:0]Shifter_0_data_out;
-  wire Shifter_0_shifterflag;
+  wire Shifter_0_shifter_flag;
   wire clk_0_1;
-  wire start_0_1;
 
   assign A0_0_1 = A0_0;
   assign A1_0_1 = A1_0;
@@ -79,27 +75,25 @@ module final_design
   assign B1_0_1 = B1_0;
   assign B2_0_1 = B2_0;
   assign B3_0_1 = B3_0;
+  assign Register_Output_0[7:0] = Register_O_0_Register_Output;
   assign clk_0_1 = clk_0;
-  assign currentPC_0[4:0] = Program_counter_0_currentPC;
-  assign regO_0[7:0] = Register_O_0_regO;
-  assign start_0_1 = start_0;
   final_design_ALU_0_0 ALU_0
        (.ALU_Sel(Instruction_Decoder_0_ALU_Sel),
-        .acc_update(ALU_0_acc_update),
+        .ALU_update(MUX_1_ALU_update_out),
         .regA(Accumulator_0_acc),
         .regB(MUX_1_MUX_Reg),
         .regO(ALU_0_regO));
   final_design_Accumulator_0_0 Accumulator_0
        (.acc(Accumulator_0_acc),
         .alu_result(ALU_0_regO),
-        .clk(clk_0_1),
-        .reset(Instruction_Decoder_0_acc_reset),
-        .update(ALU_0_acc_update));
+        .reset(Instruction_Decoder_0_acc_reset));
   final_design_Instruction_Decoder_0_0 Instruction_Decoder_0
        (.ALU_Sel(Instruction_Decoder_0_ALU_Sel),
+        .ALU_update(MUX_1_ALU_update_out),
         .MUX_0(Instruction_Decoder_0_MUX_0),
         .MUX_1(Instruction_Decoder_0_MUX_1),
         .acc_reset(Instruction_Decoder_0_acc_reset),
+        .clk(clk_0_1),
         .instruction(Instruction_Register_0_instructionOut),
         .loadA(Instruction_Decoder_0_loadA),
         .loadB(Instruction_Decoder_0_loadB),
@@ -107,15 +101,15 @@ module final_design
         .load_shifter(Instruction_Decoder_0_load_shifter),
         .shift_direction(Instruction_Decoder_0_shift_direction),
         .shifter_en(Instruction_Decoder_0_shifter_en),
-        .shifter_flag(Shifter_0_shifterflag),
+        .shifter_flag(Shifter_0_shifter_flag),
         .update_PC(Instruction_Decoder_0_update_PC));
   final_design_Instruction_Register_0_0 Instruction_Register_0
-       (.clk(clk_0_1),
-        .instructionIn(ROM_0_data),
-        .instructionOut(Instruction_Register_0_instructionOut));
+       (.instructionIn(ROM_0_data),
+        .instructionOut(Instruction_Register_0_instructionOut),
+        .update(ROM_0_update));
   final_design_MUX_0_0 MUX_0
-       (.A({1'b0,1'b0,1'b0,1'b0,Register_A_0_regA}),
-        .B({1'b0,1'b0,1'b0,1'b0,Register_B_0_regB}),
+       (.A(Register_A_0_regA),
+        .B(Register_B_0_regB),
         .MUX_Reg(MUX_0_MUX_Reg),
         .MUX_Sel(Instruction_Decoder_0_MUX_0));
   final_design_MUX_1_0 MUX_1
@@ -124,13 +118,12 @@ module final_design
         .MUX_Reg(MUX_1_MUX_Reg),
         .MUX_Sel(Instruction_Decoder_0_MUX_1));
   final_design_Program_counter_0_0 Program_counter_0
-       (.clk(clk_0_1),
-        .currentPC(Program_counter_0_currentPC),
-        .start(start_0_1),
-        .update(Instruction_Decoder_0_update_PC));
+       (.currentPC(Program_counter_0_currentPC),
+        .update_PC(Instruction_Decoder_0_update_PC));
   final_design_ROM_0_0 ROM_0
        (.address(Program_counter_0_currentPC),
-        .data(ROM_0_data));
+        .data(ROM_0_data),
+        .update(ROM_0_update));
   final_design_Register_A_0_0 Register_A_0
        (.A0(A0_0_1),
         .A1(A1_0_1),
@@ -146,15 +139,14 @@ module final_design
         .loadB(Instruction_Decoder_0_loadB),
         .regB(Register_B_0_regB));
   final_design_Register_O_0_0 Register_O_0
-       (.loadO(Instruction_Decoder_0_loadO),
-        .output_data(Accumulator_0_acc),
-        .regO(Register_O_0_regO));
+       (.Register_Output(Register_O_0_Register_Output),
+        .loadO(Instruction_Decoder_0_loadO),
+        .output_data(Accumulator_0_acc));
   final_design_Shifter_0_0 Shifter_0
-       (.clk(clk_0_1),
-        .data_in(MUX_0_MUX_Reg),
+       (.data_in(MUX_0_MUX_Reg),
         .data_out(Shifter_0_data_out),
         .load_shifter(Instruction_Decoder_0_load_shifter),
         .shift_direction(Instruction_Decoder_0_shift_direction),
         .shifter_en(Instruction_Decoder_0_shifter_en),
-        .shifter_flag(Shifter_0_shifterflag));
+        .shifter_flag(Shifter_0_shifter_flag));
 endmodule

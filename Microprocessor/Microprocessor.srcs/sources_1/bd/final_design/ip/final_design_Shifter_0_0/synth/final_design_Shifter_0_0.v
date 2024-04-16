@@ -60,7 +60,6 @@ module final_design_Shifter_0_0 (
   shift_direction,
   shifter_en,
   load_shifter,
-  clk,
   data_out,
   shifter_flag
 );
@@ -69,9 +68,6 @@ input wire [7 : 0] data_in;
 input wire shift_direction;
 input wire shifter_en;
 input wire load_shifter;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN final_design_clk_0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
-input wire clk;
 output wire [7 : 0] data_out;
 output wire shifter_flag;
 
@@ -80,7 +76,6 @@ output wire shifter_flag;
     .shift_direction(shift_direction),
     .shifter_en(shifter_en),
     .load_shifter(load_shifter),
-    .clk(clk),
     .data_out(data_out),
     .shifter_flag(shifter_flag)
   );

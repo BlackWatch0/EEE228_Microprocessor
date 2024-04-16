@@ -21,19 +21,17 @@
 
 
 module Accumulator(
-    input clk,
     input reset,
     input [7:0] alu_result,
-    input update,
-    output reg [7:0] acc
+    output reg [7:0] acc=8'b0
 );
 
-always @(posedge clk or posedge reset) begin
+always @(alu_result or posedge reset) begin
     if (reset) begin
-        acc <= 8'b0;
+        acc = 8'b0;
     end
-    else if (update) begin
-        acc <= alu_result;
+    else begin
+        acc = alu_result;
     end
 end
 

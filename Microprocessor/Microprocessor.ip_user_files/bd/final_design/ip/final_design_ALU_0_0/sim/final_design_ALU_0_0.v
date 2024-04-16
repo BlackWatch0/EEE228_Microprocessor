@@ -58,21 +58,21 @@ module final_design_ALU_0_0 (
   regA,
   regB,
   ALU_Sel,
-  acc_update,
+  ALU_update,
   regO
 );
 
 input wire [7 : 0] regA;
 input wire [7 : 0] regB;
 input wire [3 : 0] ALU_Sel;
-output wire acc_update;
+input wire ALU_update;
 output wire [7 : 0] regO;
 
   ALU inst (
     .regA(regA),
     .regB(regB),
     .ALU_Sel(ALU_Sel),
-    .acc_update(acc_update),
+    .ALU_update(ALU_update),
     .regO(regO)
   );
 endmodule

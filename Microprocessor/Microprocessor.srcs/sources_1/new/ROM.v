@@ -22,7 +22,8 @@
 
 module ROM(
     input [4:0] address,
-    output reg [3:0] data
+    output reg [3:0] data,
+    output reg update = 0
 );
 
 // Define operations
@@ -51,7 +52,7 @@ initial begin
     memory[2] = LD_SH_B;
     memory[3] = SHR;
     memory[4] = ACC_NZ_A;
-    memory[5] = SHL;
+    memory[5] = SHR;
     memory[6] = LD_SH_A;
     memory[7] = SHL;
     memory[8] = ACC_NZ_SH;
@@ -82,8 +83,9 @@ initial begin
     
 end
 
-always @(address) begin
+always @(*) begin
     data = memory[address];
+    update = ~update;
 end
 
 endmodule

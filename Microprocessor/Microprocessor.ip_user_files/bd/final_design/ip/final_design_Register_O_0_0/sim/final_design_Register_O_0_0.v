@@ -57,16 +57,16 @@
 module final_design_Register_O_0_0 (
   output_data,
   loadO,
-  regO
+  Register_Output
 );
 
 input wire [7 : 0] output_data;
 input wire loadO;
-output wire [7 : 0] regO;
+output wire [7 : 0] Register_Output;
 
   Register_O inst (
     .output_data(output_data),
     .loadO(loadO),
-    .regO(regO)
+    .Register_Output(Register_Output)
   );
 endmodule
