@@ -10,6 +10,10 @@ Please ensure compliance with this license when using the source code of the pro
 
 **including the disclosure of the modified source code and the source of the original code**.
 
+## ⚠️ Warning
+
+Any attempt to directly submit this code as an assignment will be considered plagiarism and a violation of school policies. The author bears no responsibility for such actions.
+
 ## Version
 
 This project was developed under Vivado version 2019, and it is recommended to run and modify the project code using the same or compatible version.
